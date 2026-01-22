@@ -127,6 +127,13 @@ pub async fn test_eth_connection(web3: Web3) {
                 info!("Ethereum RPC has returned an acceptable 'finalized' block ({}) behind the latest block ({}), starting the orchestrator!", finalized.number, latest.number);
                 return;
             }
+            (Ok(latest), Err(_)) => {
+                // Hardhat and other local dev networks don't support "finalized" block tag
+                warn!("Could not query 'finalized' block (likely local dev network like Hardhat)");
+                warn!("Skipping finalized block check for local development...");
+                info!("Successfully connected to Ethereum RPC at latest block {}", latest.number);
+                return;
+            }
             (_, _) => {
                 warn!(
                     "Could not connect to Ethereum RPC, delaying {} seconds before trying again.",

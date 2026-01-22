@@ -12,7 +12,13 @@ LEDGER_ENABLED ?= true
 # enable binary security features
 export GOFLAGS='-buildmode=pie'
 export CGO_CPPFLAGS="-D_FORTIFY_SOURCE=2"
-export CGO_LDFLAGS="-Wl,-z,relro,-z,now"
+# Use different linker flags for macOS vs Linux
+UNAME_S := $(shell uname -s)
+ifeq ($(UNAME_S),Darwin)
+	export CGO_LDFLAGS=""
+else
+	export CGO_LDFLAGS="-Wl,-z,relro,-z,now"
+endif
 
 build_tags = netgo
 ifeq ($(LEDGER_ENABLED),true)

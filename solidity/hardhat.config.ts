@@ -42,6 +42,8 @@ module.exports = {
         interval: [3000, 6000]
       },
       timeout: 2000000,
+      // Force IPv4 binding
+      hostname: "127.0.0.1",
       accounts: [
         {
           privateKey:

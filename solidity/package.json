@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "evm": "npx hardhat node",
+    "evm": "npx hardhat node --hostname 127.0.0.1",
     "test": "npx hardhat test --network localhost",
     "typechain": "npx hardhat typechain",
     "compile-deployer": "npx tsc -p . ; pkg dist/contract-deployer.js --targets node10-linux-x64",

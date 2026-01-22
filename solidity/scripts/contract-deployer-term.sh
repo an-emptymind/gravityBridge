@@ -3,7 +3,7 @@ npx ts-node \
 contract-deployer.ts \
 --cosmos-node="http://localhost:1317" \
 --eth-node="http://localhost:8545" \
---eth-privkey="0xb1bab011e03a9862664706fc3bbaa1b16651528e5f0e7fbfcbfdd8be302a13e7" \
+--eth-privkey="pvt_key" \
 --contract=artifacts/contracts/Gravity.sol/Gravity.json \
 --contractERC721=artifacts/contracts/GravityERC721.sol/GravityERC721.json \
 --contractERC20A=artifacts/contracts/TestERC20A.sol/TestERC20A.json \

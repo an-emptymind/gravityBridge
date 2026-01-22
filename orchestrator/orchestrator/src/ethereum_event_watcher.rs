@@ -50,10 +50,13 @@ pub async fn check_for_events(
     let latest_block = if latest_block > starting_block
         && latest_block - starting_block > BLOCKS_TO_SEARCH.into()
     {
-        starting_block + BLOCKS_TO_SEARCH.into()
+        let adjusted = starting_block + BLOCKS_TO_SEARCH.into();
+        trace!("Block range too large, limiting to {} blocks: {} to {}", BLOCKS_TO_SEARCH, starting_block, adjusted);
+        adjusted
     } else {
         latest_block
     };
+    trace!("Final block range: {} to {}", starting_block, latest_block);
 
     let deposits = web3
         .check_for_events(
@@ -292,6 +295,8 @@ pub async fn get_latest_safe_block(web3: &Web3) -> Uint256 {
         // Mainline Ethereum, Ethereum classic, or the Ropsten, Kotti, Mordor testnets
         // all Ethereum proof of stake Chains
         1 | 3 | 6 | 7 => get_finalized_block_with_retry(web3).await,
+        // Sepolia testnet - use finalized blocks (proper PoS finality ~64 blocks)
+        11155111 => get_finalized_block_with_retry(web3).await,
         // Dev, our own Gravity Ethereum testnet, and Hardhat respectively
         // all single signer chains with no chance of any reorgs
         2018 | 15 | 31337 => block_number,

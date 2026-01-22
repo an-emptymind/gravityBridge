@@ -22,3 +22,9 @@ artifacts
 
 #Testing
 test-ready-to-run
+
+# Sensitive files
+SAVED_KEYS.txt
+*.env
+.env.*
+.env.local

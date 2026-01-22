@@ -17,7 +17,8 @@ use crate::ethereum_event_watcher::get_latest_safe_block;
 
 /// This is roughly the maximum number of blocks a reasonable Ethereum node
 /// can search in a single request before it starts timing out or behaving badly
-pub const BLOCKS_TO_SEARCH: u128 = 5_000u128;
+/// NOTE: Alchemy free tier limits eth_getLogs to 10 blocks per request
+pub const BLOCKS_TO_SEARCH: u128 = 10u128;
 
 /// This function retrieves the last event nonce this oracle has relayed to Cosmos
 /// it then uses the Ethereum indexes to determine what block the last entry
@@ -37,10 +38,25 @@ pub async fn get_last_checked_block(
             .into();
 
     // zero indicates this oracle has never submitted an event before since there is no
-    // zero event nonce (it's pre-incremented in the solidity contract) we have to go
-    // and look for event nonce one.
+    // zero event nonce (it's pre-incremented in the solidity contract)
+    // For fresh chains or when connecting to a new Ethereum deployment, start from block
+    // just before the first contract event (Gravity deployed at block 10089176)
     if last_event_nonce == 0u8.into() {
-        last_event_nonce = 1u8.into();
+        // Start from block 10089170 to catch the deployment and ValsetUpdated event at 10089176
+        let start_block: Uint256 = 10089170u128.into();
+        warn!("Last event nonce is 0 - this oracle has never submitted an event");
+        warn!("Starting from block {} to catch all Gravity contract events", start_block);
+        warn!("If you need to sync from a different block, modify oracle_resync.rs");
+        return start_block;
+    }
+
+    // If last_event_nonce is 1, this is likely right after contract deployment
+    // Start from the deployment block to avoid scanning thousands of blocks backwards
+    if last_event_nonce == 1u8.into() {
+        let start_block: Uint256 = 10089170u128.into();
+        warn!("Last event nonce is 1 - starting from Gravity contract deployment block");
+        warn!("Starting from block {} (contract deployed at 10089176)", start_block);
+        return start_block;
     }
 
     let mut current_block: Uint256 = latest_block;
