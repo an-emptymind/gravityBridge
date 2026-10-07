@@ -1,0 +1,16 @@
+{
+  "chain_id": "gravity-test-1",
+  "num_validators": 4,
+  "cosmos": {
+    "rpc": "http://localhost:26657",
+    "grpc": "http://localhost:9090",
+    "api": "http://localhost:1317"
+  },
+  "ethereum": {
+    "rpc": "http://localhost:8545",
+    "chain_id": 31337
+  },
+  "gravity_binary": "/Users/Raghavendra/go/bin/gravity",
+  "orchestrator_binary": "/Users/Raghavendra/Raghav/gravityBridge/Gravity-Bridge/orchestrator/target/release/gbt",
+  "data_dir": "/Users/Raghavendra/Raghav/gravityBridge/Gravity-Bridge/local-bridge/data"
+}

@@ -1,0 +1,25 @@
+=============== Jan 29, 2026 (IST) ===============
+16:32:39.322882 log@legend F·NumFile S·FileSize N·Entry C·BadEntry B·BadBlock Ke·KeyError D·DroppedEntry L·Level Q·SeqNum T·TimeElapsed
+16:32:39.365382 db@open opening
+16:32:39.365925 version@stat F·[] S·0B[] Sc·[]
+16:32:39.379350 db@janitor F·2 G·0
+16:32:39.379575 db@open done T·13.88725ms
+=============== Jan 30, 2026 (IST) ===============
+08:34:58.500696 memdb@flush N·2947 S·3MiB
+08:34:58.560880 memdb@flush created L0@3 N·2947 S·918KiB "abc..y:1,v7":"val..:99,v489"
+08:34:58.563805 version@stat F·[1] S·918KiB[918KiB] Sc·[0.25]
+08:34:58.578715 memdb@flush committed F·1 T·70.638667ms
+08:34:58.584152 journal@remove removed @1
+09:27:40.644230 memdb@flush N·2950 S·3MiB
+09:27:40.722989 memdb@flush created L0@5 N·2950 S·905KiB "abc..000,v5002":"val..999,v4989"
+09:27:40.723050 version@stat F·[2] S·1MiB[1MiB] Sc·[0.50]
+09:27:40.730967 memdb@flush committed F·1 T·86.543792ms
+09:27:40.734263 journal@remove removed @2
+09:33:26.686674 table@compaction L0·2 -> L1·0 S·1MiB Q·6111
+09:33:26.762469 table@build created L1@6 N·3542 S·741KiB "abc..y:1,v7":"val..999,v4989"
+09:33:26.762527 version@stat F·[0 1] S·741KiB[0B 741KiB] Sc·[0.00 0.01]
+09:33:26.766602 table@compaction committed F-1 S-1MiB Ke·0 D·2355 T·79.810125ms
+09:33:26.766987 table@remove removed @5
+09:33:26.767133 table@remove removed @3
+09:35:28.015092 db@close closing
+09:35:28.015246 db@close done T·152.292µs

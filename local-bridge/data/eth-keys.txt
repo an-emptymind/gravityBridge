@@ -1,0 +1,16 @@
+Validator 1 Ethereum Key:
+  private_key: 0xc5e8f61d1ab959b397eecc0a37a6517b8e67a0e7cf1f4bce5591f3ed80199122
+  address: 0xc783df8a850f42e7F7e57013759C285caa701eB6
+
+Validator 2 Ethereum Key:
+  private_key: 0xd49743deccbccc5dc7baa8e69e5be03298da8688a15dd202e20f15d5e0e9a9fb
+  address: 0xeAD9C93b79Ae7C1591b1FB5323BD777E86e150d4
+
+Validator 3 Ethereum Key:
+  private_key: 0x23c601ae397441f3ef6f1075dcb0031ff17fb079837beadaf3c84d96c6f3e569
+  address: 0xE5904695748fe4A84b40b3fc79De2277660BD1D3
+
+Validator 4 Ethereum Key:
+  private_key: 0xee9d129c1997549ee09c0757af5939b2483d80ad649a0eda68e8b0357ad11131
+  address: 0x92561F28Ec438Ee9831D00D1D59fbDC981b762b2
+
